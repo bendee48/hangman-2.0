@@ -1,8 +1,8 @@
-class Word
-  attr_reader :word_to_guess
+class WordToGuess
+  attr_reader :word
 
   def initialize(word)
-    @word_to_guess = word
+    @word = word
   end
 
   def display_word

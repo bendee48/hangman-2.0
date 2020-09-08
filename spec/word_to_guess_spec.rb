@@ -1,13 +1,13 @@
-require_relative '../lib/word'
+require_relative '../lib/word_to_guess'
 require_relative '../lib/dictionary'
 
-RSpec.describe Word do
+RSpec.describe WordToGuess do
   let(:dictionary) { instance_double(Dictionary, word: 'hello') }
   subject { described_class.new(dictionary.word) }
 
-  describe '#word_to_guess' do
+  describe '#word' do
     it 'returns the word to be guessed' do
-      expect(subject.word_to_guess).to eql 'hello'
+      expect(subject.word).to eql 'hello'
     end
   end
 
