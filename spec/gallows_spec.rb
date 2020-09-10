@@ -13,7 +13,7 @@ RSpec.describe Gallows do
                   ============
                 GALLOWS
 
-      expect(subject.start).to eq gallows
+      expect(subject::start).to eq gallows
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.describe Gallows do
                   ============
                 GALLOWS
 
-      expect(subject.head).to eq gallows
+      expect(subject::head).to eq gallows
     end
   end
 
@@ -45,7 +45,7 @@ RSpec.describe Gallows do
                   ============
                 GALLOWS
 
-      expect(subject.body).to eq gallows
+      expect(subject::body).to eq gallows
     end
   end
 
@@ -61,7 +61,7 @@ RSpec.describe Gallows do
                   ============
                 GALLOWS
 
-      expect(subject.right_arm).to eq gallows
+      expect(subject::right_arm).to eq gallows
     end
   end
 
@@ -77,7 +77,7 @@ RSpec.describe Gallows do
                   ============
                 GALLOWS
 
-      expect(subject.left_arm).to eq gallows
+      expect(subject::left_arm).to eq gallows
     end
   end
 
@@ -93,7 +93,7 @@ RSpec.describe Gallows do
                   ============
                 GALLOWS
 
-      expect(subject.right_leg).to eq gallows
+      expect(subject::right_leg).to eq gallows
     end
   end
 
@@ -109,7 +109,7 @@ RSpec.describe Gallows do
                   ============
                 GALLOWS
 
-      expect(subject.left_leg).to eq gallows
+      expect(subject::left_leg).to eq gallows
     end
   end
 end

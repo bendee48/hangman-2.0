@@ -1,5 +1,5 @@
-class Gallows
-  def start
+module Gallows
+  def self.start
     <<~GALLOWS
       ===========
         |/    |
@@ -11,7 +11,7 @@ class Gallows
     GALLOWS
   end
 
-  def head
+  def self.head
     <<~GALLOWS
       ===========
         |/    |
@@ -23,7 +23,7 @@ class Gallows
     GALLOWS
   end
 
-  def body
+  def self.body
     <<~GALLOWS
       ===========
         |/    |
@@ -35,7 +35,7 @@ class Gallows
     GALLOWS
   end
 
-  def right_arm
+  def self.right_arm
     <<~GALLOWS
       ===========
         |/    |
@@ -47,7 +47,7 @@ class Gallows
     GALLOWS
   end
 
-  def left_arm
+  def self.left_arm
     <<~GALLOWS
       ===========
         |/    |
@@ -59,7 +59,7 @@ class Gallows
     GALLOWS
   end
 
-  def right_leg
+  def self.right_leg
     <<~GALLOWS
       ===========
         |/    |
@@ -71,7 +71,7 @@ class Gallows
     GALLOWS
   end
 
-  def left_leg
+  def self.left_leg
     <<~GALLOWS
       ===========
         |/    |

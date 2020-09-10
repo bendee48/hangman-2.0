@@ -10,16 +10,4 @@ RSpec.describe WordToGuess do
       expect(subject.word).to eql 'hello'
     end
   end
-
-  describe '#display_word' do
-    it 'displays the current word with no correct guesses' do
-      expect(subject.display_word).to eql '_ _ _ _ _'
-    end
-  end
-
-  describe '#display_word' do
-    it 'displays the current word with 1 letter guessed correctly' do
-      
-    end
-  end
 end
