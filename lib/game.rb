@@ -2,30 +2,37 @@ require_relative 'player'
 require_relative 'dictionary'
 require_relative 'word_to_guess'
 require_relative 'gallows'
+require_relative 'guess_logic'
+require_relative 'guess'
 
 class Game
-  attr_accessor :player, :word_to_guess
+  attr_accessor :player, :word_to_guess, :guess_logic
 
   def initialize
     @player = nil
-    @word_to_guess = nil
+    @word_to_guess = word
+    @guess_logic = GuessLogic.new(word_to_guess)
   end
 
   def start
     puts "Welcome"
     #set up player
     player_setup
-    #set word
-    set_word
     #loop
     loop do
       #display gallows
       puts Gallows::start
       #display word to guess
+      puts word_to_guess.word
       #make guess
+      puts "Guess a letter please: "
+      answer = STDIN.gets.chomp
+      #require 'byebug'; byebug
       #process guess
+      #guess_logic = GuessLogic.new(word_to_guess)
+      guess = Guess.new(answer)
       #display results
-      break
+      puts guess_logic.compare(guess)
     end
   end
 
@@ -36,10 +43,8 @@ class Game
     puts "Thanks #{player.name}"
   end
 
-  def set_word
+  def word
     dictionary = Dictionary.new('words.txt')
-    dictionary_word = WordToGuess.new(dictionary.word)
-    self.word_to_guess = dictionary_word.word
-    puts word_to_guess
+    WordToGuess.new(dictionary.word)
   end
 end

@@ -23,6 +23,10 @@ RSpec.describe Dictionary do
     it 'returns a word between 5 and 12 characters' do
       expect(subject.word.size).to be >=5 and be <= 12
     end
-  end
 
+    it 'returns a downcase string' do
+      word = subject.word
+      expect(word).to eql word.downcase 
+    end
+  end
 end

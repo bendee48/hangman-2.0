@@ -12,6 +12,4 @@ RSpec.describe Guess do
       expect(subject.current_guess).to eq 'hello'
     end
   end
-
-
 end

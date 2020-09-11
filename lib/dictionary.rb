@@ -6,7 +6,7 @@ class Dictionary
   end
 
   def word
-    words.sample
+    words.sample.downcase
   end
 
   private

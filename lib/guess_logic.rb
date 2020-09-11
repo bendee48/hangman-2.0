@@ -1,6 +1,5 @@
 class GuessLogic
-  attr_reader :word_to_guess
-  attr_accessor :guessed_letters
+  attr_reader :word_to_guess, :guessed_letters
 
   def initialize(word_to_guess)
     @word_to_guess = word_to_guess.word
@@ -8,10 +7,7 @@ class GuessLogic
   end
 
   def compare(guess)
-    if guess.current_guess == 'h'
-      ['h', '-', '-', '-', '-']
-    else
-      ['h', 'e', '-', '-', '-']
-    end
+    guessed_letters << guess.current_guess
+    word_to_guess.gsub(/[^#{guessed_letters}]/, '-')
   end
 end
