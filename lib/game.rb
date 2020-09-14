@@ -6,15 +6,12 @@ require_relative 'guess_logic'
 require_relative 'guess'
 
 class Game
-  attr_accessor :player, :word_to_guess, :guess_logic,
-                :number_of_guesses, :guessed_word
+  attr_accessor :player, :word_to_guess, :guess_logic
 
   def initialize
     @player = nil
     @word_to_guess = word
     @guess_logic = GuessLogic.new(word_to_guess)
-    @number_of_guesses = 0
-    @guessed_word = word_to_guess.word.gsub(/\w/, '-')
   end
 
   def start
@@ -26,18 +23,18 @@ class Game
       #puts Gallows::start
       #display word to guess
       puts word_to_guess.word
-      puts "Word to guess: #{guessed_word}"
+      puts "Word to guess: #{guess_logic.guessed_word}"
       #make guess
       puts "Guess a letter please: "
       answer = STDIN.gets.chomp
 
       #process guess
       guess = Guess.new(answer)
-      self.number_of_guesses += 1
-      puts "No. of guesses: #{number_of_guesses}"
       #set result
-      self.guessed_word = guess_logic.compare(guess)
-
+      guess_logic.compare(guess)
+      # display result
+      guess_logic.guessed_word
+      puts "No. of incorrect guesses: #{guess_logic.incorrect_guesses}"
       #check for game over
       game_over?
     end
@@ -57,7 +54,7 @@ class Game
   end
 
   def game_over?
-    if number_of_guesses > 6
+    if guess_logic.incorrect_guesses > 6
       puts "Game Over"
       true
     end
