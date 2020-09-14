@@ -9,14 +9,6 @@ class GuessLogic
     @incorrect_guesses = 0
   end
 
-  def correct_guess?(guess)
-    word_to_guess.include?(guess.current_guess)
-  end
-
-  def add_letters(collection, guess)
-    collection << guess.current_guess
-  end
-
   def guessed_word
     #word_to_guess.gsub(/[^#{guessed_letters}]/, '-')
     word_to_guess.chars.map { |char| guessed_letters.include?(char) ? char : '-' }.join
@@ -29,5 +21,15 @@ class GuessLogic
       add_letters(incorrect_letters, guess)
       self.incorrect_guesses += 1
     end
+  end
+
+  private
+
+  def correct_guess?(guess)
+    word_to_guess.include?(guess.current_guess)
+  end
+
+  def add_letters(collection, guess)
+    collection << guess.current_guess
   end
 end
