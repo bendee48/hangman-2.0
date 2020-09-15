@@ -4,6 +4,7 @@ require_relative 'word_to_guess'
 require_relative 'gallows'
 require_relative 'guess_logic'
 require_relative 'guess'
+require_relative 'validation'
 
 class Game
   attr_accessor :player, :word_to_guess, :guess_logic
@@ -25,27 +26,38 @@ class Game
       puts word_to_guess.word
       puts "Word to guess: #{guess_logic.guessed_word}"
       #make guess
-      puts "Guess a letter please: "
-      answer = STDIN.gets.chomp
-
-      #process guess
-      guess = Guess.new(answer)
-      #set result
-      guess_logic.compare(guess)
-      # display result
-      guess_logic.guessed_word
-      puts "No. of incorrect guesses: #{guess_logic.incorrect_guesses}"
+      guess
       #check for game over
-      game_over?
+      exit if game_over?
     end
   end
 
   def player_setup
     puts "Welcome"
-    puts "Enter name: "
+    loop do
+      puts "Enter name: "
+      answer = STDIN.gets.chomp
+      unless Validation::player(answer)
+        puts "Name needs to be between 3 and 12 characters."
+        redo
+      end
+      self.player = Player.new(answer)
+      puts "Thanks #{player.name}"
+      break
+    end
+  end
+
+  def guess
+    #make guess
+    puts "Guess a letter please: "
     answer = STDIN.gets.chomp
-    self.player = Player.new(answer)
-    puts "Thanks #{player.name}"
+    #process guess
+    guess = Guess.new(answer)
+    #set result
+    guess_logic.compare(guess)
+    # display result
+    guess_logic.guessed_word
+    puts "No. of incorrect guesses: #{guess_logic.incorrect_guesses}"
   end
 
   def word
@@ -54,7 +66,7 @@ class Game
   end
 
   def game_over?
-    if guess_logic.incorrect_guesses > 6
+    if guess_logic.incorrect_guesses > 5
       puts "Game Over"
       true
     end

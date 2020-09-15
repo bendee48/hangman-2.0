@@ -5,5 +5,5 @@ RSpec.describe Player do
 
   it 'has a name' do
     expect(subject.name).to eql 'Jess'
-  end  
+  end
 end
