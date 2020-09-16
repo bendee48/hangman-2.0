@@ -1,4 +1,5 @@
 require_relative '../lib/validation'
+require_relative '../lib/word_to_guess'
 
 RSpec.describe Validation do
   describe '#name' do
@@ -43,6 +44,11 @@ RSpec.describe Validation do
     context 'invalid guess' do
       it 'returns false for a non letter' do
         guess = '2'
+        expect(subject.valid_guess?(guess)).to eql false
+      end
+
+      it 'returns false for more than 1 letter and not guessing full word' do
+        guess = 'eh'
         expect(subject.valid_guess?(guess)).to eql false
       end
 

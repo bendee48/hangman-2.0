@@ -15,7 +15,7 @@ class Validation
   end
 
   def valid_guess?(answer)
-    if answer =~ /[a-z]/
+    if answer =~ /[a-z]/ && answer.size == 1
       true
     else
       errors << 'Answer must be a letter.'
