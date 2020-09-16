@@ -1,11 +1,3 @@
-module Validation
-  def self.player(answer)
-    answer.size > 2 && answer.size < 13
-  end
-end
-
-# something like this to hold error messages as well
-
 class Validation
   attr_reader :errors
 
@@ -13,13 +5,21 @@ class Validation
     @errors = []
   end
 
-  def player(answer)
+  def valid_name?(answer)
     if answer.size > 2 && answer.size < 13
       true
     else
-      errors << "Invalid name"
+      errors << "Name must be between 3 and 12 characters."
       false
     end
   end
 
+  def valid_guess?(answer)
+    if answer =~ /[a-z]/
+      true
+    else
+      errors << 'Answer must be a letter.'
+      false
+    end
+  end
 end

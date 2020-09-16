@@ -37,8 +37,9 @@ class Game
     loop do
       puts "Enter name: "
       answer = STDIN.gets.chomp
-      unless Validation::player(answer)
-        puts "Name needs to be between 3 and 12 characters."
+      validate = Validation.new
+      unless validate.valid_name?(answer)
+        puts validate.errors.join unless validate.errors.empty?
         redo
       end
       self.player = Player.new(answer)
@@ -49,15 +50,23 @@ class Game
 
   def guess
     #make guess
-    puts "Guess a letter please: "
-    answer = STDIN.gets.chomp
-    #process guess
-    guess = Guess.new(answer)
-    #set result
-    guess_logic.compare(guess)
-    # display result
-    guess_logic.guessed_word
-    puts "No. of incorrect guesses: #{guess_logic.incorrect_guesses}"
+    loop do
+      puts "Guess a letter please: "
+      answer = STDIN.gets.chomp
+      validate = Validation.new
+      unless validate.valid_guess?(answer)
+        puts validate.errors.join unless validate.errors.empty?
+        redo
+      end
+      #process guess
+      guess = Guess.new(answer)
+      #set result
+      guess_logic.compare(guess)
+      # display result
+      guess_logic.guessed_word
+      puts "No. of incorrect guesses: #{guess_logic.incorrect_guesses}"
+      break
+    end
   end
 
   def word
