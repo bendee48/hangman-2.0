@@ -1,7 +1,8 @@
 class Validation
-  attr_reader :errors
+  attr_reader :errors, :word_to_guess
 
-  def initialize
+  def initialize(word_to_guess)
+    @word_to_guess = word_to_guess.word
     @errors = []
   end
 
@@ -15,10 +16,10 @@ class Validation
   end
 
   def valid_guess?(answer)
-    if answer =~ /[a-z]/ && answer.size == 1
+    if answer =~ /[a-z]/ && (answer.size == 1 || answer.size == word_to_guess.size)
       true
     else
-      errors << 'Answer must be a letter.'
+      errors << 'Guess must be a either a single letter or a full word guess.'
       false
     end
   end

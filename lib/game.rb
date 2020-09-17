@@ -51,7 +51,7 @@ class Game
   def guess
     #make guess
     loop do
-      puts "Guess a letter please: "
+      puts "Make your guess: "
       answer = STDIN.gets.chomp
       validate = Validation.new
       unless validate.valid_guess?(answer)

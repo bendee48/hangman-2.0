@@ -2,6 +2,9 @@ require_relative '../lib/validation'
 require_relative '../lib/word_to_guess'
 
 RSpec.describe Validation do
+  let(:word_to_guess) { instance_double(WordToGuess, word: 'hello') }
+  subject { described_class.new(word_to_guess) }
+
   describe '#name' do
     context 'invalid name' do
       it 'returns false for name that is too short' do
@@ -37,6 +40,11 @@ RSpec.describe Validation do
     context 'valid guess' do
       it 'is a letter' do
         guess = 'e'
+        expect(subject.valid_guess?(guess)).to eql true
+      end
+
+      it 'returns true for a full word guess' do
+        guess = 'threw'
         expect(subject.valid_guess?(guess)).to eql true
       end
     end
