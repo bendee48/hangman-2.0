@@ -71,8 +71,14 @@ class Game
       
       #process guess
       guess_logic.compare(guess)
+      unless guess_logic.messages.empty?
+        message = guess_logic.messages.pop
+        puts message
+      end
       # display result
       guess_logic.guessed_word
+      puts "Correct letters: #{guess_logic.guessed_letters}"
+      puts "Incorrect letters: #{guess_logic.incorrect_letters}"
       puts "No. of incorrect guesses: #{guess_logic.incorrect_guesses}"
       break
     end

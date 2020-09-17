@@ -26,6 +26,11 @@ RSpec.describe GuessLogic do
         subject.compare(guess)
         expect(subject.guessed_letters).to eq ['h', 'e']
       end
+
+      it 'adds positive message to messages' do
+        guess = instance_double(Guess, current_guess: 'o')
+        expect { subject.compare(guess) }.to change { subject.messages.size }.by(1)
+      end
     end
 
     context 'guess is incorrect' do
@@ -40,6 +45,11 @@ RSpec.describe GuessLogic do
         allow(subject).to receive(:incorrect_letters).and_return ['q']
         subject.compare(guess)
         expect(subject.incorrect_letters).to eq ['q', 'w']
+      end
+
+      it 'adds a negative message to messages' do
+        guess = instance_double(Guess, current_guess: 'w')
+        expect { subject.compare(guess) }.to change { subject.messages.size }.by(1)
       end
     end
   end

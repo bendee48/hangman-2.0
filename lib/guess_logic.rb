@@ -1,12 +1,14 @@
 class GuessLogic
   attr_reader :word_to_guess, :guessed_letters
-  attr_accessor :incorrect_guesses, :incorrect_letters
+  attr_accessor :incorrect_guesses, :incorrect_letters,
+                :messages
 
   def initialize(word_to_guess)
     @word_to_guess = word_to_guess.word
     @guessed_letters = []
     @incorrect_letters = []
     @incorrect_guesses = 0
+    @messages = []
   end
 
   def guessed_word
@@ -17,9 +19,11 @@ class GuessLogic
   def compare(guess)
     if correct_guess?(guess)
       add_letters(guessed_letters, guess)
+      messages << "Correct guess"
     else
       add_letters(incorrect_letters, guess)
       self.incorrect_guesses += 1
+      messages << "Incorrect guess"
     end
   end
 
