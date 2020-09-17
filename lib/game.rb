@@ -5,6 +5,7 @@ require_relative 'gallows'
 require_relative 'guess_logic'
 require_relative 'guess'
 require_relative 'validation'
+require_relative 'display'
 
 class Game
   attr_accessor :player, :word_to_guess, :guess_logic
@@ -51,7 +52,8 @@ class Game
   def guess
     #make guess
     loop do
-      puts "Make your guess: "
+      display = Display.new(guess_logic)
+      display.beginning_of_guess_round  
       answer = STDIN.gets.chomp.downcase
       validate = Validation.new(word_to_guess)
       unless validate.valid_guess?(answer)
@@ -71,15 +73,9 @@ class Game
       
       #process guess
       guess_logic.compare(guess)
-      unless guess_logic.messages.empty?
-        message = guess_logic.messages.pop
-        puts message
-      end
+      
       # display result
-      guess_logic.guessed_word
-      puts "Correct letters: #{guess_logic.guessed_letters}"
-      puts "Incorrect letters: #{guess_logic.incorrect_letters}"
-      puts "No. of incorrect guesses: #{guess_logic.incorrect_guesses}"
+      display.end_of_guess_round
       break
     end
   end
