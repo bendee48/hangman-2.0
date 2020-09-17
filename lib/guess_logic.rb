@@ -23,6 +23,14 @@ class GuessLogic
     end
   end
 
+  def full_word_guess?(guess)
+    word_to_guess.length == guess.current_guess.length
+  end
+
+  def correct_word?(guess)
+    word_to_guess == guess.current_guess
+  end
+
   private
 
   def correct_guess?(guess)

@@ -58,16 +58,18 @@ class Game
         puts validate.errors.join unless validate.errors.empty?
         redo
       end
+      guess = Guess.new(answer)
+
       #check full word
-      if answer.length == word_to_guess.word.length
-        if answer == word_to_guess.word
+      if guess_logic.full_word_guess?(guess)
+        if guess_logic.correct_word?(guess)
           victory
         else
           defeat
         end
       end
+      
       #process guess
-      guess = Guess.new(answer)
       guess_logic.compare(guess)
       # display result
       guess_logic.guessed_word

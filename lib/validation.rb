@@ -19,7 +19,7 @@ class Validation
     if answer =~ /[a-z]/ && (answer.size == 1 || answer.size == word_to_guess.size)
       true
     else
-      errors << 'Guess must be a either a single letter or a full word guess.'
+      errors << 'Guess must be a either a single letter or guessing the full word.'
       false
     end
   end

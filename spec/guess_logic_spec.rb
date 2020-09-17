@@ -90,4 +90,36 @@ RSpec.describe GuessLogic do
       expect { subject.compare(guess) }.to change { subject.incorrect_guesses }.by 1
     end
   end
+
+  describe '#full_word_guess' do
+    context 'guess is same length as word to guess' do
+      it 'returns true' do
+        guess = instance_double(Guess, current_guess: 'threw')
+        expect(subject.full_word_guess?(guess)).to eql true
+      end
+    end
+
+    context 'guess is not same length as word to guess' do
+      it 'returns false' do
+        guess = instance_double(Guess, current_guess: 'thrw')
+        expect(subject.full_word_guess?(guess)).to eql false
+      end
+    end
+  end
+
+  describe '#correct_word?' do
+    context 'full word guess is correct' do
+      it 'returns true' do
+        guess = instance_double(Guess, current_guess: 'hello')
+        expect(subject.correct_word?(guess)).to eql true
+      end
+    end
+
+    context 'full word guess is incorrect' do
+      it 'returns true' do
+        guess = instance_double(Guess, current_guess: 'hippo')
+        expect(subject.correct_word?(guess)).to eql false
+      end
+    end
+  end
 end
