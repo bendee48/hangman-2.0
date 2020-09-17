@@ -28,7 +28,7 @@ class Game
       #make guess
       guess
       #check for game over
-      exit if game_over?
+      defeat if game_over?
     end
   end
 
@@ -37,7 +37,7 @@ class Game
     loop do
       puts "Enter name: "
       answer = STDIN.gets.chomp
-      validate = Validation.new
+      validate = Validation.new(word_to_guess)
       unless validate.valid_name?(answer)
         puts validate.errors.join unless validate.errors.empty?
         redo
@@ -52,15 +52,22 @@ class Game
     #make guess
     loop do
       puts "Make your guess: "
-      answer = STDIN.gets.chomp
-      validate = Validation.new
+      answer = STDIN.gets.chomp.downcase
+      validate = Validation.new(word_to_guess)
       unless validate.valid_guess?(answer)
         puts validate.errors.join unless validate.errors.empty?
         redo
       end
+      #check full word
+      if answer.length == word_to_guess.word.length
+        if answer == word_to_guess.word
+          victory
+        else
+          defeat
+        end
+      end
       #process guess
       guess = Guess.new(answer)
-      #set result
       guess_logic.compare(guess)
       # display result
       guess_logic.guessed_word
@@ -69,15 +76,24 @@ class Game
     end
   end
 
+  private
+
   def word
     dictionary = Dictionary.new('words.txt')
     WordToGuess.new(dictionary.word)
   end
 
   def game_over?
-    if guess_logic.incorrect_guesses > 5
-      puts "Game Over"
-      true
-    end
+    guess_logic.incorrect_guesses > 5
+  end
+
+  def victory
+    puts "You win."
+    exit
+  end
+
+  def defeat
+    puts "Game Over"
+    exit
   end
 end
