@@ -18,40 +18,39 @@ class Game
 
   def start
     player_setup
+    main_game_loop
+  end
+
+  def main_game_loop
     loop do
       #display gallows
       #puts Gallows::start
       #testing
       puts word_to_guess.word
-      ##display word to guess
-      puts "Word to guess: #{guess_logic.guessed_word}"
-      #make guess
+      Display.word_to_guess(guess_logic)
       guess
-      #check for win
       victory if guess_logic.guessed_word == word_to_guess.word
-      #check for game over
       defeat if game_over?
     end
   end
 
   def player_setup
-    puts "Welcome"
+    Display.welcome_message
     loop do
-      puts "Enter name: "
+      Display.enter_name
       answer = STDIN.gets.chomp
       validate = Validation.new(word_to_guess)
       unless validate.valid_name?(answer)
-        puts validate.errors.join unless validate.errors.empty?
+        Display.validation_errors(validate)
         redo
       end
       self.player = Player.new(answer)
-      puts "Thanks #{player.name}"
+      Display.thank_player(player)
       break
     end
   end
 
   def guess
-    #make guess
     loop do
       Display.beginning_of_guess_round  
       answer = STDIN.gets.chomp.downcase
