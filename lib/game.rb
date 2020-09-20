@@ -17,17 +17,18 @@ class Game
   end
 
   def start
-    #set up player
     player_setup
-    #loop
     loop do
       #display gallows
       #puts Gallows::start
-      #display word to guess
+      #testing
       puts word_to_guess.word
+      ##display word to guess
       puts "Word to guess: #{guess_logic.guessed_word}"
       #make guess
       guess
+      #check for win
+      victory if guess_logic.guessed_word == word_to_guess.word
       #check for game over
       defeat if game_over?
     end
@@ -52,8 +53,7 @@ class Game
   def guess
     #make guess
     loop do
-      display = Display.new(guess_logic)
-      display.beginning_of_guess_round  
+      Display.beginning_of_guess_round  
       answer = STDIN.gets.chomp.downcase
       validate = Validation.new(word_to_guess)
       unless validate.valid_guess?(answer)
@@ -75,7 +75,7 @@ class Game
       guess_logic.compare(guess)
       
       # display result
-      display.end_of_guess_round
+      Display.end_of_guess_round(guess_logic)
       break
     end
   end
@@ -89,6 +89,10 @@ class Game
 
   def game_over?
     guess_logic.incorrect_guesses > 5
+  end
+
+  def win?
+    guess_logic.correct_word?(guess)
   end
 
   def victory

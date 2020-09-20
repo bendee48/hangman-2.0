@@ -1,15 +1,13 @@
 class Display
-  attr_reader :guess_logic
-
-  def initialize(guess_logic)
-    @guess_logic = guess_logic
+  def self.word_to_guess(guess_logic)
+    puts guess_logic.guessed_word
   end
 
-  def beginning_of_guess_round
+  def self.beginning_of_guess_round
     puts "Make your guess: "
   end
 
-  def end_of_guess_round
+  def self.end_of_guess_round(guess_logic)
     puts <<~MSG
     #{guess_logic.messages.pop}
     #{guess_logic.guessed_word}
