@@ -4,11 +4,11 @@ require_relative '../lib/guess'
 
 RSpec.describe GuessLogic do
   let(:word_to_guess) { instance_double(WordToGuess, word: 'hello') }
-  subject { described_class.new(word_to_guess) }
+  subject(:guess_logic) { described_class.new(word_to_guess) }
 
   describe '#word_to_guess' do
     it 'returns the word to guess' do
-      expect(subject.word_to_guess).to eq 'hello'
+      expect(guess_logic.word_to_guess).to eq 'hello'
     end
   end
 
@@ -16,40 +16,40 @@ RSpec.describe GuessLogic do
     context 'guess is correct' do
       it 'adds the correctly guessed letters' do
         guess = instance_double(Guess, current_guess: 'h' )
-        subject.compare(guess)
-        expect(subject.guessed_letters).to eq ['h']
+        guess_logic.compare(guess)
+        expect(guess_logic.guessed_letters).to eq ['h']
       end
 
       it 'adds the correctly guessed letter and returns all guessed letters' do
         guess = instance_double(Guess, current_guess: 'e' )
-        allow(subject).to receive(:guessed_letters).and_return ['h']
-        subject.compare(guess)
-        expect(subject.guessed_letters).to eq ['h', 'e']
+        allow(guess_logic).to receive(:guessed_letters).and_return ['h']
+        guess_logic.compare(guess)
+        expect(guess_logic.guessed_letters).to eq ['h', 'e']
       end
 
       it 'adds positive message to messages' do
         guess = instance_double(Guess, current_guess: 'o')
-        expect { subject.compare(guess) }.to change { subject.messages.size }.by(1)
+        expect { guess_logic.compare(guess) }.to change { guess_logic.messages.size }.by(1)
       end
     end
 
     context 'guess is incorrect' do
       it 'adds the incorrectly guessed letters' do
         guess = instance_double(Guess, current_guess: 'q' )
-        subject.compare(guess)
-        expect(subject.incorrect_letters).to eq ['q']
+        guess_logic.compare(guess)
+        expect(guess_logic.incorrect_letters).to eq ['q']
       end
 
       it 'adds the incorrectly guessed letters and returns all incorrectly guessed' do
         guess = instance_double(Guess, current_guess: 'w' )
-        allow(subject).to receive(:incorrect_letters).and_return ['q']
-        subject.compare(guess)
-        expect(subject.incorrect_letters).to eq ['q', 'w']
+        allow(guess_logic).to receive(:incorrect_letters).and_return ['q']
+        guess_logic.compare(guess)
+        expect(guess_logic.incorrect_letters).to eq ['q', 'w']
       end
 
       it 'adds a negative message to messages' do
         guess = instance_double(Guess, current_guess: 'w')
-        expect { subject.compare(guess) }.to change { subject.messages.size }.by(1)
+        expect { guess_logic.compare(guess) }.to change { guess_logic.messages.size }.by(1)
       end
     end
   end
@@ -57,21 +57,21 @@ RSpec.describe GuessLogic do
   describe '#guessed_word' do
     context 'no guesses' do
       it 'returns the blank word to guess' do
-        expect(subject.guessed_word).to eq '-----'
+        expect(guess_logic.guessed_word).to eq '-----'
       end
     end
 
     context '1 guess right' do
       it 'returns the correctly guessed letter filled in' do
         guess = instance_double(Guess, current_guess: 'e' )
-        subject.compare(guess)
-        expect(subject.guessed_word).to eq '-e---'
+        guess_logic.compare(guess)
+        expect(guess_logic.guessed_word).to eq '-e---'
       end
 
       it 'returns all of the same correctly guessed letter filled in' do
         guess = instance_double(Guess, current_guess: 'l' )
-        subject.compare(guess)
-        expect(subject.guessed_word).to eq '--ll-'
+        guess_logic.compare(guess)
+        expect(guess_logic.guessed_word).to eq '--ll-'
       end
     end
 
@@ -79,17 +79,17 @@ RSpec.describe GuessLogic do
       it 'returns all the correctly filled in letters' do
         guess1 = instance_double(Guess, current_guess: 'h' )
         guess2 = instance_double(Guess, current_guess: 'o' )
-        subject.compare(guess1)
-        subject.compare(guess2)
-        expect(subject.guessed_word).to eq 'h---o'
+        guess_logic.compare(guess1)
+        guess_logic.compare(guess2)
+        expect(guess_logic.guessed_word).to eq 'h---o'
       end
     end
 
     context 'incorrect guess' do
       it "doesn't fill in any incorrect guesses" do
         guess = instance_double(Guess, current_guess: 'x' )
-        subject.compare(guess)
-        expect(subject.guessed_word).to eq '-----'
+        guess_logic.compare(guess)
+        expect(guess_logic.guessed_word).to eq '-----'
       end
     end
   end
@@ -97,7 +97,7 @@ RSpec.describe GuessLogic do
   describe '#incorrect_guesses' do
     it 'increases by 1 if guess is incorrect' do
       guess = instance_double(Guess, current_guess: 'w' )
-      expect { subject.compare(guess) }.to change { subject.incorrect_guesses }.by 1
+      expect { guess_logic.compare(guess) }.to change { guess_logic.incorrect_guesses }.by 1
     end
   end
 
@@ -105,14 +105,14 @@ RSpec.describe GuessLogic do
     context 'guess is same length as word to guess' do
       it 'returns true' do
         guess = instance_double(Guess, current_guess: 'threw')
-        expect(subject.full_word_guess?(guess)).to eql true
+        expect(guess_logic.full_word_guess?(guess)).to eql true
       end
     end
 
     context 'guess is not same length as word to guess' do
       it 'returns false' do
         guess = instance_double(Guess, current_guess: 'thrw')
-        expect(subject.full_word_guess?(guess)).to eql false
+        expect(guess_logic.full_word_guess?(guess)).to eql false
       end
     end
   end
@@ -121,14 +121,14 @@ RSpec.describe GuessLogic do
     context 'full word guess is correct' do
       it 'returns true' do
         guess = instance_double(Guess, current_guess: 'hello')
-        expect(subject.correct_word?(guess)).to eql true
+        expect(guess_logic.correct_word?(guess)).to eql true
       end
     end
 
     context 'full word guess is incorrect' do
       it 'returns true' do
         guess = instance_double(Guess, current_guess: 'hippo')
-        expect(subject.correct_word?(guess)).to eql false
+        expect(guess_logic.correct_word?(guess)).to eql false
       end
     end
   end

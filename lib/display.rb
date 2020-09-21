@@ -7,8 +7,8 @@ class Display
     puts "Enter your name: "
   end
 
-  def self.validation_errors(validation)
-    puts validation.errors.join unless validation.errors.empty?
+  def self.validation_errors(errors)
+    puts errors.join(', ') unless errors.empty?
   end
 
   def self.word_to_guess(guess_logic)

@@ -4,7 +4,6 @@ require_relative 'word_to_guess'
 require_relative 'gallows'
 require_relative 'guess_logic'
 require_relative 'guess'
-require_relative 'validation'
 require_relative 'display'
 require_relative 'player_name'
 
@@ -40,7 +39,7 @@ class Game
     loop do
       Display.enter_name
       player_name = PlayerName.new(STDIN.gets.chomp)
-      puts player_name.errors if player_name.errors
+      Display.validation_errors(player_name.errors)
       redo unless player_name.valid?
       self.player = Player.new(player_name.name)
       Display.thank_player(player)
@@ -51,21 +50,11 @@ class Game
   def guess
     loop do
       Display.beginning_of_guess_round  
-      answer = STDIN.gets.chomp.downcase
-      validate = Validation.new(word_to_guess)
-      unless validate.valid_guess?(answer)
-        puts validate.errors.join unless validate.errors.empty?
-        redo
-      end
-      guess = Guess.new(answer)
-
-      #check full word
+      guess = Guess.new(STDIN.gets, word_to_guess)
+      Display.validation_errors(guess.errors)
+      redo unless guess.valid?
       full_word_check(guess) if guess_logic.full_word_guess?(guess)
-      
-      #process guess
       guess_logic.compare(guess)
-      
-      # display result
       Display.end_of_guess_round(guess_logic)
       break
     end
