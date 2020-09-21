@@ -24,10 +24,8 @@ class Game
   def main_game_loop
     loop do
       #display gallows
-      #puts Gallows::start
       #testing
       puts word_to_guess.word
-      Display.word_to_guess(guess_logic)
       guess
       victory if guess_logic.guessed_word == word_to_guess.word
       defeat if game_over?
@@ -49,7 +47,7 @@ class Game
 
   def guess
     loop do
-      Display.beginning_of_guess_round  
+      Display.beginning_of_guess_round(guess_logic)
       guess = Guess.new(STDIN.gets, word_to_guess)
       Display.validation_errors(guess.errors)
       redo unless guess.valid?
@@ -84,12 +82,12 @@ class Game
   end
 
   def victory
-    puts "You win."
+    Display.victory
     exit
   end
 
   def defeat
-    puts "Game Over"
+    Display.defeat
     exit
   end
 end

@@ -1,9 +1,11 @@
 require_relative '../lib/gallows'
 
 RSpec.describe Gallows do
+  subject(:gallows) { described_class }
+
   describe '#start' do
     it 'returns the starting gallows' do
-      gallows = <<~GALLOWS
+      start = <<~START
                   ===========
                     |/    |
                     |
@@ -11,15 +13,15 @@ RSpec.describe Gallows do
                     |
                     |\\
                   ============
-                GALLOWS
+                START
 
-      expect(subject::start).to eq gallows
+      expect(gallows::start).to eq start
     end
   end
 
   describe '#head' do
     it 'returns the gallows with head' do
-      gallows = <<~GALLOWS
+      head = <<~HEAD
                   ===========
                     |/    |
                     |     O
@@ -27,15 +29,15 @@ RSpec.describe Gallows do
                     |
                     |\\
                   ============
-                GALLOWS
+                HEAD
 
-      expect(subject::head).to eq gallows
+      expect(gallows::head).to eq head
     end
   end
 
   describe '#body' do
     it 'returns the gallows with body' do
-      gallows = <<~GALLOWS
+      body = <<~BODY
                   ===========
                     |/    |
                     |     O
@@ -43,15 +45,15 @@ RSpec.describe Gallows do
                     |
                     |\\
                   ============
-                GALLOWS
+                BODY
 
-      expect(subject::body).to eq gallows
+      expect(gallows::body).to eq body
     end
   end
 
   describe '#right_arm' do
     it 'returns the gallows with right arm' do
-      gallows = <<~GALLOWS
+      right_arm = <<~RIGHT_ARM
                   ===========
                     |/    |
                     |     O
@@ -59,57 +61,57 @@ RSpec.describe Gallows do
                     |
                     |\\
                   ============
-                GALLOWS
+                RIGHT_ARM
 
-      expect(subject::right_arm).to eq gallows
+      expect(gallows::right_arm).to eq right_arm
     end
   end
 
   describe '#left_arm' do
     it 'returns the gallows with left arm' do
-      gallows = <<~GALLOWS
+      left_arm = <<~LEFT_ARM
                   ===========
                     |/    |
                     |     O
-                    |    /|\
+                    |    /|\\
                     |
                     |\\
                   ============
-                GALLOWS
+                LEFT_ARM
 
-      expect(subject::left_arm).to eq gallows
+      expect(gallows::left_arm).to eq left_arm
     end
   end
 
   describe '#right_leg' do
     it 'returns the gallows with right leg' do
-      gallows = <<~GALLOWS
+      right_leg = <<~RIGHT_LEG
                   ===========
                     |/    |
                     |     O
-                    |    /|\
+                    |    /|\\
                     |    /
                     |\\
                   ============
-                GALLOWS
+                RIGHT_LEG
 
-      expect(subject::right_leg).to eq gallows
+      expect(gallows::right_leg).to eq right_leg
     end
   end
 
   describe '#left_leg' do
     it 'returns the gallows with left leg' do
-      gallows = <<~GALLOWS
+      finish = <<~FINISH
                   ===========
                     |/    |
                     |     O
-                    |    /|\
-                    |    / \
+                    |    /|\\
+                    |    / \\
                     |\\
                   ============
-                GALLOWS
+                FINISH
 
-      expect(subject::left_leg).to eq gallows
+      expect(gallows::finish).to eq finish
     end
   end
 end

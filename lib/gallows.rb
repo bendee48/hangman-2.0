@@ -52,7 +52,7 @@ module Gallows
       ===========
         |/    |
         |     O
-        |    /|\
+        |    /|\\
         |
         |\\
       ============
@@ -64,20 +64,20 @@ module Gallows
       ===========
         |/    |
         |     O
-        |    /|\
+        |    /|\\
         |    /
         |\\
       ============
     GALLOWS
   end
 
-  def self.left_leg
+  def self.finish
     <<~GALLOWS
       ===========
         |/    |
         |     O
-        |    /|\
-        |    / \
+        |    /|\\
+        |    / \\
         |\\
       ============
     GALLOWS
