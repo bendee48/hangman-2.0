@@ -8,4 +8,6 @@ class Guess
   def valid?
     true
   end
+
+  
 end

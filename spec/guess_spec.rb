@@ -10,8 +10,6 @@ RSpec.describe Guess do
 
   describe '#valid?' do
     context 'valid guess' do
-      subject { described_class.new('e') }
-
       it 'should return true a letter' do
         expect(subject.valid?).to eql true
       end
@@ -22,7 +20,7 @@ RSpec.describe Guess do
     end
 
     context 'invalid guess' do
-      
+      it 
     end
   end
 end
