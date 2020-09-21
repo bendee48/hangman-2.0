@@ -6,6 +6,7 @@ require_relative 'guess_logic'
 require_relative 'guess'
 require_relative 'validation'
 require_relative 'display'
+require_relative 'player_name'
 
 class Game
   attr_accessor :player, :word_to_guess, :guess_logic
@@ -38,13 +39,10 @@ class Game
     Display.welcome_message
     loop do
       Display.enter_name
-      answer = STDIN.gets.chomp
-      validate = Validation.new(word_to_guess)
-      unless validate.valid_name?(answer)
-        Display.validation_errors(validate)
-        redo
-      end
-      self.player = Player.new(answer)
+      player_name = PlayerName.new(STDIN.gets.chomp)
+      puts player_name.errors if player_name.errors
+      redo unless player_name.valid?
+      self.player = Player.new(player_name.name)
       Display.thank_player(player)
       break
     end
@@ -62,13 +60,7 @@ class Game
       guess = Guess.new(answer)
 
       #check full word
-      if guess_logic.full_word_guess?(guess)
-        if guess_logic.correct_word?(guess)
-          victory
-        else
-          defeat
-        end
-      end
+      full_word_check(guess) if guess_logic.full_word_guess?(guess)
       
       #process guess
       guess_logic.compare(guess)
@@ -80,6 +72,14 @@ class Game
   end
 
   private
+
+  def full_word_check(guess)
+    if guess_logic.correct_word?(guess)
+      victory
+    else
+      defeat
+    end
+  end
 
   def word
     dictionary = Dictionary.new('words.txt')
