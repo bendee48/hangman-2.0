@@ -24,8 +24,7 @@ class Game
   def main_game_loop
     loop do
       Gallows::GALLOWS[guess_logic.incorrect_guesses]
-      #testing
-      puts word_to_guess.word
+      puts word_to_guess.word #TESTING REMOVE
       guess
       victory if guess_logic.guessed_word == word_to_guess.word
       defeat if game_over?

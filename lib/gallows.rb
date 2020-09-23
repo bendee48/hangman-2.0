@@ -1,86 +1,86 @@
 module Gallows
   def self.start
-    <<~GALLOWS
-      ===========
-        |/    |
-        |
-        |
-        |
-        |\\
-      ============
-    GALLOWS
+  <<-GALLOWS
+    ===========
+      |/    |
+      |
+      |
+      |
+      |\\
+    ============
+  GALLOWS
   end
 
   def self.head
-    <<~GALLOWS
-      ===========
-        |/    |
-        |     O
-        |
-        |
-        |\\
-      ============
-    GALLOWS
+  <<-GALLOWS
+    ===========
+      |/    |
+      |     O
+      |
+      |
+      |\\
+    ============
+  GALLOWS
   end
 
   def self.body
-    <<~GALLOWS
-      ===========
-        |/    |
-        |     O
-        |     |
-        |
-        |\\
-      ============
-    GALLOWS
+  <<-GALLOWS
+    ===========
+      |/    |
+      |     O
+      |     |
+      |
+      |\\
+    ============
+  GALLOWS
   end
 
   def self.right_arm
-    <<~GALLOWS
-      ===========
-        |/    |
-        |     O
-        |    /|
-        |
-        |\\
-      ============
-    GALLOWS
+  <<-GALLOWS
+    ===========
+      |/    |
+      |     O
+      |    /|
+      |
+      |\\
+    ============
+  GALLOWS
   end
 
   def self.left_arm
-    <<~GALLOWS
-      ===========
-        |/    |
-        |     O
-        |    /|\\
-        |
-        |\\
-      ============
-    GALLOWS
+  <<-GALLOWS
+    ===========
+      |/    |
+      |     O
+      |    /|\\
+      |
+      |\\
+    ============
+  GALLOWS
   end
 
   def self.right_leg
-    <<~GALLOWS
-      ===========
-        |/    |
-        |     O
-        |    /|\\
-        |    /
-        |\\
-      ============
-    GALLOWS
+  <<-GALLOWS
+    ===========
+      |/    |
+      |     O
+      |    /|\\
+      |    /
+      |\\
+    ============
+  GALLOWS
   end
 
   def self.finish
-    <<~GALLOWS
-      ===========
-        |/    |
-        |     O
-        |    /|\\
-        |    / \\
-        |\\
-      ============
-    GALLOWS
+  <<-GALLOWS
+    ===========
+      |/    |
+      |     O
+      |    /|\\
+      |    / \\
+      |\\
+    ============
+  GALLOWS
   end
 
   GALLOWS = { 0 => self.start, 

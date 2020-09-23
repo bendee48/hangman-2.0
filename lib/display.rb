@@ -18,23 +18,25 @@ module Display
   end
 
   def self.word_to_guess(guess_logic)
-    guess_logic.guessed_word
+    puts " Word to guess: #{guess_logic.guessed_word}"
+    puts
   end
 
   def self.gallows(guess_logic)
-    Gallows::GALLOWS[guess_logic.incorrect_guesses]
+    puts Gallows::GALLOWS[guess_logic.incorrect_guesses]
   end
 
   def self.beginning_of_guess_round(guess_logic)
-    puts "\n" + gallows(guess_logic)
-    puts word_to_guess(guess_logic)
+    puts
+    gallows(guess_logic)
+    word_to_guess(guess_logic)
     puts "Make your guess: "
   end
 
   def self.end_of_guess_round(guess_logic)
     puts <<~MSG
     #{guess_logic.messages.pop}
-    #{guess_logic.guessed_word}
+    
     Wrong letters: #{guess_logic.incorrect_letters.join(', ')}
     Incorrect guesses: #{guess_logic.incorrect_guesses}
     MSG

@@ -35,113 +35,113 @@ RSpec.describe Display do
 
   describe '.word_to_guess' do
     it 'displays the word to guess' do
-      expect { display.word_to_guess(guess_logic) }.to output("-e---\n").to_stdout
+      expect { display.word_to_guess(guess_logic) }.to output(" Word to guess: -e---\n\n").to_stdout
     end
   end
 
   describe '.end_of_guess_round' do
     it 'displays end of game round information' do
       expect { display.end_of_guess_round(guess_logic) }.
-               to output("Correct guess!\n-e---\nWrong letters: w, y, z\nIncorrect guesses: 2\n").to_stdout 
+               to output("Correct guess!\n\nWrong letters: w, y, z\nIncorrect guesses: 2\n").to_stdout 
     end
   end
 
   describe '.gallows' do
     it 'returns just the gallows for 0 incorrect guesses' do
       allow(guess_logic).to receive(:incorrect_guesses).and_return(0)
-      start = <<~START
-                  ===========
-                    |/    |
-                    |
-                    |
-                    |
-                    |\\
-                  ============
-                START
+    start = <<-START
+    ===========
+      |/    |
+      |
+      |
+      |
+      |\\
+    ============
+    START
       expect { display.gallows(guess_logic) }.to output(start).to_stdout
     end
 
     it 'returns the gallows and head for 1 incorrect guess' do
       allow(guess_logic).to receive(:incorrect_guesses).and_return(1)
-      head = <<~HEAD
-                  ===========
-                    |/    |
-                    |     O
-                    |
-                    |
-                    |\\
-                  ============
-                HEAD
+    head = <<-HEAD
+    ===========
+      |/    |
+      |     O
+      |
+      |
+      |\\
+    ============
+    HEAD
       expect { display.gallows(guess_logic) }.to output(head).to_stdout
     end
 
     it 'returns the gallows, head and body for 2 incorrect guesses' do
       allow(guess_logic).to receive(:incorrect_guesses).and_return(2)
-      body = <<~BODY
-                  ===========
-                    |/    |
-                    |     O
-                    |     |
-                    |
-                    |\\
-                  ============
-                BODY
+    body = <<-BODY
+    ===========
+      |/    |
+      |     O
+      |     |
+      |
+      |\\
+    ============
+    BODY
       expect { display.gallows(guess_logic) }.to output(body).to_stdout
     end
 
     it 'returns the gallows with head, right arm and body for 3 incorrect guesses' do
       allow(guess_logic).to receive(:incorrect_guesses).and_return(3)
-      right_arm = <<~RIGHT_ARM
-                  ===========
-                    |/    |
-                    |     O
-                    |    /|
-                    |
-                    |\\
-                  ============
-                RIGHT_ARM
+    right_arm = <<-RIGHT_ARM
+    ===========
+      |/    |
+      |     O
+      |    /|
+      |
+      |\\
+    ============
+    RIGHT_ARM
       expect { display.gallows(guess_logic) }.to output(right_arm).to_stdout
     end
 
     it 'returns the gallows with head, right arm, left arm and body for 4 incorrect guesses' do
       allow(guess_logic).to receive(:incorrect_guesses).and_return(4)
-      left_arm = <<~LEFT_ARM
-                  ===========
-                    |/    |
-                    |     O
-                    |    /|\\
-                    |
-                    |\\
-                  ============
-                LEFT_ARM
+    left_arm = <<-LEFT_ARM
+    ===========
+      |/    |
+      |     O
+      |    /|\\
+      |
+      |\\
+    ============
+    LEFT_ARM
       expect { display.gallows(guess_logic) }.to output(left_arm).to_stdout
     end
 
     it 'returns the gallows with head, right arm, left arm, right leg and body for 5 incorrect guesses' do
       allow(guess_logic).to receive(:incorrect_guesses).and_return(5)
-      right_leg = <<~RIGHT_LEG
-                  ===========
-                    |/    |
-                    |     O
-                    |    /|\\
-                    |    /
-                    |\\
-                  ============
-                RIGHT_LEG
+    right_leg = <<-RIGHT_LEG
+    ===========
+      |/    |
+      |     O
+      |    /|\\
+      |    /
+      |\\
+    ============
+    RIGHT_LEG
       expect { display.gallows(guess_logic) }.to output(right_leg).to_stdout
     end
 
     it 'returns the gallows and whole body for 6 or more incorrect guesses' do
       allow(guess_logic).to receive(:incorrect_guesses).and_return(6)
-      finish = <<~FINISH
-                  ===========
-                    |/    |
-                    |     O
-                    |    /|\\
-                    |    / \\
-                    |\\
-                  ============
-                FINISH
+    finish = <<-FINISH
+    ===========
+      |/    |
+      |     O
+      |    /|\\
+      |    / \\
+      |\\
+    ============
+    FINISH
       expect { display.gallows(guess_logic) }.to output(finish).to_stdout
     end
   end

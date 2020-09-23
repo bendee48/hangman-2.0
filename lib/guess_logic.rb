@@ -12,18 +12,17 @@ class GuessLogic
   end
 
   def guessed_word
-    #word_to_guess.gsub(/[^#{guessed_letters}]/, '-')
     word_to_guess.chars.map { |char| guessed_letters.include?(char) ? char : '-' }.join
   end
 
   def compare(guess)
     if correct_guess?(guess)
       add_letters(guessed_letters, guess)
-      messages << "Correct guess"
+      messages << "\n That's Correct!"
     else
       add_letters(incorrect_letters, guess)
       self.incorrect_guesses += 1
-      messages << "Incorrect guess"
+      messages << "\n Sorry, that's incorrect."
     end
   end
 
