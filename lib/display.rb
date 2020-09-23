@@ -18,31 +18,16 @@ module Display
   end
 
   def self.word_to_guess(guess_logic)
-    puts guess_logic.guessed_word
+    guess_logic.guessed_word
   end
 
   def self.gallows(guess_logic)
-    case guess_logic.incorrect_guesses
-    when 0
-      puts Gallows.start
-    when 1
-      puts Gallows.head
-    when 2
-      puts Gallows.body
-    when 3
-      puts Gallows.right_arm
-    when 4
-      puts Gallows.left_arm
-    when 5
-      puts Gallows.right_leg
-    else
-      puts Gallows.finish
-    end
+    Gallows::GALLOWS[guess_logic.incorrect_guesses]
   end
 
   def self.beginning_of_guess_round(guess_logic)
-    puts gallows(guess_logic)
-    word_to_guess(guess_logic)
+    puts "\n" + gallows(guess_logic)
+    puts word_to_guess(guess_logic)
     puts "Make your guess: "
   end
 

@@ -23,7 +23,7 @@ class Game
 
   def main_game_loop
     loop do
-      #display gallows
+      Gallows::GALLOWS[guess_logic.incorrect_guesses]
       #testing
       puts word_to_guess.word
       guess

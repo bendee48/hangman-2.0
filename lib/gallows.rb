@@ -82,4 +82,13 @@ module Gallows
       ============
     GALLOWS
   end
+
+  GALLOWS = { 0 => self.start, 
+              1 => self.head,
+              2 => self.body,
+              3 => self.right_arm,
+              4 => self.left_arm,
+              5 => self.right_leg,
+              6 => self.finish,
+  }.freeze  
 end
