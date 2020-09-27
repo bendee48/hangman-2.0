@@ -4,10 +4,6 @@ RSpec.describe Dictionary do
   let(:file) { 'test_file.txt' }
   subject(:dictionary) { described_class.new(file) }
 
-  it "takes a file" do
-    expect(dictionary.file).to be_a File 
-  end
-
   describe '#word' do
     it 'returns a string' do
       expect(dictionary.word).to be_a String

@@ -27,19 +27,17 @@ module Display
   end
 
   def self.beginning_of_guess_round(guess_logic)
-    puts
-    gallows(guess_logic)
-    word_to_guess(guess_logic)
-    puts "Make your guess: "
+    puts <<~MSG
+    #{gallows(guess_logic)}
+    #{word_to_guess(guess_logic)}
+    Wrong letters: #{guess_logic.incorrect_letters.join(', ')}
+    Incorrect guesses: "#{guess_logic.incorrect_guesses}\n\n
+    Make your guess:
+    MSG
   end
 
   def self.end_of_guess_round(guess_logic)
-    puts <<~MSG
-    #{guess_logic.messages.pop}
-    
-    Wrong letters: #{guess_logic.incorrect_letters.join(', ')}
-    Incorrect guesses: #{guess_logic.incorrect_guesses}
-    MSG
+    puts "#{guess_logic.messages.pop}"
   end
 
   def self.victory
@@ -49,5 +47,10 @@ module Display
   def self.defeat
     puts Gallows.finish
     puts "You lose!"
+  end
+
+  def self.load_game
+    puts "Enter 'load' to load previously saved game."
+    puts "Or press any key to start a new game."
   end
 end

@@ -39,10 +39,18 @@ RSpec.describe Display do
     end
   end
 
+  describe '.beginning_of_guess_round' do
+    it 'displays beginning of round info' do
+      expect { display.beginning_of_guess_round(guess_logic) }.to output.to_stdout
+    end
+  end
+
   describe '.end_of_guess_round' do
-    it 'displays end of game round information' do
-      expect { display.end_of_guess_round(guess_logic) }.
-               to output("Correct guess!\n\nWrong letters: w, y, z\nIncorrect guesses: 2\n").to_stdout 
+    context 'correct guess' do
+      it 'displays end of game round information' do
+        expect { display.end_of_guess_round(guess_logic) }.
+                to output("Correct guess!\n").to_stdout 
+      end
     end
   end
 
@@ -178,6 +186,12 @@ RSpec.describe Display do
   describe '.defeat' do
     it 'displays defeat text' do
       expect { display.defeat }.to output.to_stdout
+    end
+  end
+
+  describe '.load' do
+    it 'displays load game text' do
+      expect { display.load_game }.to output.to_stdout
     end
   end
 end

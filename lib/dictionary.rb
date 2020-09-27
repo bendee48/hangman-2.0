@@ -1,20 +1,20 @@
 class Dictionary
-  attr_reader :file
+  attr_reader :filename
   
-  def initialize(file)
-    @file = File.open("static/#{file}")
+  def initialize(filename)
+    @filename = filename
   end
 
   def word
-    words.sample.downcase
+    @word ||= words.sample.downcase
   end
 
   private
 
   def words
-    @words ||= file.readlines(chomp: true)
-                   .reject do |word|
-                      word.size < 5 || word.size > 12
-                    end
+    @words ||= File.open("static/#{filename}") do |f|
+                 f.readlines(chomp: true)
+                  .reject { |word| word.size < 5 || word.size > 12 }
+               end
   end
 end

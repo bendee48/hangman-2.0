@@ -6,6 +6,8 @@ require_relative 'guess_logic'
 require_relative 'guess'
 require_relative 'display'
 require_relative 'player_name'
+require_relative 'game_save'
+require 'yaml'
 
 class Game
   attr_accessor :player, :word_to_guess, :guess_logic
@@ -17,6 +19,8 @@ class Game
   end
 
   def start
+    welcome
+    load_game
     player_setup
     main_game_loop
   end
@@ -28,11 +32,11 @@ class Game
       guess
       victory if guess_logic.guessed_word == word_to_guess.word
       defeat if game_over?
+      GameSave.save(self)
     end
   end
 
   def player_setup
-    Display.welcome_message
     loop do
       Display.enter_name
       player_name = PlayerName.new(STDIN.gets.chomp)
@@ -58,6 +62,16 @@ class Game
   end
 
   private
+
+  def welcome
+    Display.welcome_message
+  end
+
+  def load_game
+    Display.load_game
+    answer = gets.chomp
+    GameSave.load.main_game_loop if answer == 'load'
+  end
 
   def full_word_check(guess)
     if guess_logic.correct_word?(guess)
