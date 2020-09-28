@@ -1,11 +1,12 @@
-class Guess
+require_relative 'answer'
+
+class Guess < Answer
   attr_reader :word_to_guess
-  attr_accessor :current_guess, :errors
+  attr_accessor :errors
   
-  def initialize(current_guess, word_to_guess)
-    @current_guess = current_guess.chomp.downcase.strip
+  def initialize(answer, word_to_guess)
+    super(answer)
     @word_to_guess = word_to_guess.word
-    @errors = []
     valid?
   end
 
@@ -19,14 +20,14 @@ class Guess
   private
 
   def is_letter?
-    current_guess.match?(/[a-z]/)
+    answer.match?(/[a-z]/)
   end
 
   def single_letter?
-    current_guess.size == 1
+    answer.size == 1
   end
 
   def full_word_guess?
-    current_guess.size == word_to_guess.size
+    answer.size == word_to_guess.size
   end
 end

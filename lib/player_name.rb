@@ -1,10 +1,10 @@
-class PlayerName
-  attr_reader :name
-  attr_accessor :errors
+require_relative 'answer'
 
-  def initialize(name)
-    @name = name
-    @errors = []
+class PlayerName < Answer
+  attr_reader :answer
+
+  def initialize(answer)
+    super(answer)
     valid?
   end
 
@@ -14,7 +14,9 @@ class PlayerName
     errors.empty?
   end
 
+  private
+
   def valid_size?
-    name.size > 2 && name.size < 13
+    answer.size > 2 && answer.size < 13
   end   
 end

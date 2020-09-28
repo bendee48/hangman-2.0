@@ -27,20 +27,20 @@ class GuessLogic
   end
 
   def full_word_guess?(guess)
-    word_to_guess.length == guess.current_guess.length
+    word_to_guess.length == guess.answer.length
   end
 
   def correct_word?(guess)
-    word_to_guess == guess.current_guess
+    word_to_guess == guess.answer
   end
 
   private
 
   def correct_guess?(guess)
-    word_to_guess.include?(guess.current_guess)
+    word_to_guess.include?(guess.answer)
   end
 
   def add_letters(collection, guess)
-    collection << guess.current_guess
+    collection << guess.answer
   end
 end

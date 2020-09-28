@@ -43,7 +43,7 @@ class Game
       player_name = PlayerName.new(STDIN.gets.chomp)
       Display.validation_errors(player_name.errors)
       redo unless player_name.valid?
-      self.player = Player.new(player_name.name)
+      self.player = Player.new(player_name.answer)
       Display.thank_player(player)
       break
     end

@@ -31,7 +31,7 @@ MSG
   end
 
   def self.play_again
-    puts "Would you like to play again?"
+    puts "Would you like to play again? Enter 'yes' or 'no': "
   end
 
   def self.validation_errors(errors)
