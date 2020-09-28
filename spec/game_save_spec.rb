@@ -6,13 +6,12 @@ RSpec.describe GameSave do
   describe '.save' do
     it 'saves the a game object' do
       game = double('Game Object')
-      file = double('File Object')
-      game_data = double('Game Data')
+      file = StringIO.new
+      game_data = 'game data'
       allow(YAML).to receive(:dump).with(game).and_return(game_data)
       allow(File).to receive(:open).with('./lib/save_games/savegame.txt', 'w').and_yield(file)
-      allow(file).to receive(:write).with(game_data)
       game_save.save(game)
-      expect(file).to have_received(:write).with(game_data)
+      expect(file.string).to eq game_data
     end
   end
 

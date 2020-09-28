@@ -21,6 +21,7 @@ class Game
   def start
     welcome
     load_game
+    instructions
     player_setup
     main_game_loop
   end
@@ -67,6 +68,12 @@ class Game
     Display.welcome_message
   end
 
+  def instructions
+    Display.instruction_intro
+    answer = gets.chomp
+    Display.instructions if answer.downcase == 'i'
+  end
+
   def load_game
     Display.load_game
     answer = gets.chomp
@@ -96,11 +103,22 @@ class Game
 
   def victory
     Display.victory
-    exit
+    reload
   end
 
   def defeat
     Display.defeat
-    exit
+    reload
+  end
+
+  def reload
+    Display.play_again
+    answer = gets.chomp.downcase
+    if answer == 'yes'
+      Game.new.main_game_loop
+    else
+      puts "Okay, bye."
+      exit
+    end
   end
 end

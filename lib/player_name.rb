@@ -10,7 +10,7 @@ class PlayerName
 
   def valid?
     self.errors = []
-    errors << "Invalid size" unless valid_size?
+    errors << "Name must be between 3 - 12 chars." unless valid_size?
     errors.empty?
   end
 

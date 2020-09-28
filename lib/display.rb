@@ -5,8 +5,33 @@ module Display
     puts "Welcome."
   end
 
+  def self.instruction_intro
+    puts "If you'd like instructions enter 'i'."
+    puts "Otherwise press any key to continue."
+  end
+
+  def self.instructions
+    puts <<-MSG
+  Reveal the hidden word before your man is hung.
+
+  You may guess a single letter at a time. 
+  A correct guess will result in that letter being filled in.
+  Incorrect guesses will result in a part of the stick man being drawn.
+  You have 6 incorrect guesses to play with to save your man.
+  You may also guess the whole word at any time, but be careful. An incorrect guess is game over.
+
+  The game is auto saved after each round. 
+  Use the load function at the start to load a previous game.
+
+MSG
+  end
+
   def self.enter_name
     puts "Enter your name: "
+  end
+
+  def self.play_again
+    puts "Would you like to play again?"
   end
 
   def self.validation_errors(errors)
@@ -19,7 +44,6 @@ module Display
 
   def self.word_to_guess(guess_logic)
     puts " Word to guess: #{guess_logic.guessed_word}"
-    puts
   end
 
   def self.gallows(guess_logic)
@@ -28,11 +52,11 @@ module Display
 
   def self.beginning_of_guess_round(guess_logic)
     puts <<~MSG
-    #{gallows(guess_logic)}
-    #{word_to_guess(guess_logic)}
-    Wrong letters: #{guess_logic.incorrect_letters.join(', ')}
-    Incorrect guesses: "#{guess_logic.incorrect_guesses}\n\n
-    Make your guess:
+      #{gallows(guess_logic)}
+      #{word_to_guess(guess_logic)}
+      Wrong letters: #{guess_logic.incorrect_letters.join(', ')}
+      Incorrect guesses: #{guess_logic.incorrect_guesses}\n\n
+      Make your guess:
     MSG
   end
 

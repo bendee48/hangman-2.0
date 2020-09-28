@@ -20,6 +20,24 @@ RSpec.describe Display do
     end
   end
 
+  describe '.instruction_intro' do
+    it 'displays instruction intro message' do
+      expect { display.instruction_intro }.to output.to_stdout
+    end
+  end
+
+  describe '.play_again' do
+    it 'displays instruction intro message' do
+      expect { display.play_again }.to output.to_stdout
+    end
+  end
+
+  describe '.instructions' do
+    it 'displays instruction intro message' do
+      expect { display.instructions }.to output.to_stdout
+    end
+  end
+
   describe '.enter_name' do
     it 'displays enter name text' do
       expect { display.enter_name }.to output.to_stdout
@@ -35,7 +53,7 @@ RSpec.describe Display do
 
   describe '.word_to_guess' do
     it 'displays the word to guess' do
-      expect { display.word_to_guess(guess_logic) }.to output(" Word to guess: -e---\n\n").to_stdout
+      expect { display.word_to_guess(guess_logic) }.to output(" Word to guess: -e---\n").to_stdout
     end
   end
 
