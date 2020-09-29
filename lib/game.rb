@@ -41,7 +41,7 @@ class Game
   def player_setup
     loop do
       Display.enter_name
-      player_name = PlayerName.new(STDIN.gets.chomp)
+      player_name = PlayerName.new($stdin.gets)
       Display.validation_errors(player_name.errors)
       redo unless player_name.valid?
       self.player = Player.new(player_name.answer)
@@ -53,7 +53,7 @@ class Game
   def guess
     loop do
       Display.beginning_of_guess_round(guess_logic)
-      guess = Guess.new(STDIN.gets, word_to_guess)
+      guess = Guess.new($stdin.gets, word_to_guess)
       Display.validation_errors(guess.errors)
       redo unless guess.valid?
       full_word_check(guess) if guess_logic.full_word_guess?(guess)
@@ -71,13 +71,13 @@ class Game
 
   def instructions
     Display.instruction_intro
-    response = Answer.new(gets)
+    response = Answer.new($stdin.gets)
     Display.instructions if response.answer == 'i'
   end
 
   def load_game
     Display.load_game
-    response = Answer.new(gets)
+    response = Answer.new($stdin.gets)
     GameSave.load.main_game_loop if response.answer == 'load'
   end
 
@@ -114,7 +114,7 @@ class Game
 
   def reload
     Display.play_again
-    answer = gets.chomp.downcase
+    answer = $stdin.gets.chomp.downcase
     if answer == 'yes'
       Game.new.main_game_loop
     else
