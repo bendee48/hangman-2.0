@@ -7,6 +7,7 @@ require_relative 'guess'
 require_relative 'display'
 require_relative 'player_name'
 require_relative 'game_save'
+require_relative 'answer'
 require 'yaml'
 
 class Game
@@ -70,14 +71,14 @@ class Game
 
   def instructions
     Display.instruction_intro
-    answer = gets.chomp
-    Display.instructions if answer.downcase == 'i'
+    response = Answer.new(gets)
+    Display.instructions if response.answer == 'i'
   end
 
   def load_game
     Display.load_game
-    answer = gets.chomp
-    GameSave.load.main_game_loop if answer == 'load'
+    response = Answer.new(gets)
+    GameSave.load.main_game_loop if response.answer == 'load'
   end
 
   def full_word_check(guess)
@@ -117,7 +118,7 @@ class Game
     if answer == 'yes'
       Game.new.main_game_loop
     else
-      puts "Okay, bye."
+      Display.leave
       exit
     end
   end

@@ -27,4 +27,18 @@ RSpec.describe Answer do
       expect(answer.answer).to eql 'e'
     end
   end
+
+  describe '#quit_game?' do
+    context 'player chooses to quit game' do
+      around(:example) do |example|
+        example.run 
+        rescue SystemExit
+      end
+
+      it 'is true' do
+        answer = described_class.new('quit game')
+        expect(answer.quit_game?).to eql true
+      end
+    end
+  end
 end

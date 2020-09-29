@@ -22,6 +22,7 @@ module Display
 
   The game is auto saved after each round. 
   Use the load function at the start to load a previous game.
+  Enter 'quit game' at any time to end session.
 
 MSG
   end
@@ -32,6 +33,10 @@ MSG
 
   def self.play_again
     puts "Would you like to play again? Enter 'yes' or 'no': "
+  end
+
+  def self.leave
+    puts "Okay, bye."
   end
 
   def self.validation_errors(errors)
@@ -65,7 +70,7 @@ MSG
   end
 
   def self.victory
-    puts "You win!"
+    puts "\n  You win!\n\n"
   end
 
   def self.defeat
