@@ -32,6 +32,12 @@ RSpec.describe Display do
     end
   end
 
+  describe '.leave' do
+    it 'displays goodbye message' do
+      expect { display.leave }.to output.to_stdout
+    end
+  end
+
   describe '.instructions' do
     it 'displays instruction intro message' do
       expect { display.instructions }.to output.to_stdout
@@ -197,7 +203,8 @@ RSpec.describe Display do
 
   describe '.victory' do
     it 'displays victory text' do
-      expect { display.victory }.to output.to_stdout
+      word_to_guess = double('Word to Guess', word: 'hello')
+      expect { display.victory(word_to_guess) }.to output.to_stdout
     end
   end
 

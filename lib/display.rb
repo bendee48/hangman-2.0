@@ -69,7 +69,8 @@ MSG
     puts "#{guess_logic.messages.pop}"
   end
 
-  def self.victory
+  def self.victory(word_to_guess)
+    puts "\n Yes! The word was #{word_to_guess.word.upcase}."
     puts "\n  You win!\n\n"
   end
 

@@ -32,11 +32,18 @@ class Game
       Gallows::GALLOWS[guess_logic.incorrect_guesses]
       puts word_to_guess.word #TESTING REMOVE
       guess
-      victory if guess_logic.guessed_word == word_to_guess.word
+      victory if win?
       defeat if game_over?
       GameSave.save(self)
     end
   end
+
+  # def test
+  #   puts 'hallo'
+  #   guess = Guess.new('bob', WordToGuess.new('bob'))
+  #   word_to_guess
+  #   full_word_check(guess)
+  # end
 
   def player_setup
     loop do
@@ -99,11 +106,11 @@ class Game
   end
 
   def win?
-    guess_logic.correct_word?(guess)
+    guess_logic.guessed_word == word_to_guess.word
   end
 
   def victory
-    Display.victory
+    Display.victory(word_to_guess)
     reload
   end
 
