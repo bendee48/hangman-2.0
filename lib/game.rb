@@ -40,9 +40,11 @@ class Game
 
   # def test
   #   puts 'hallo'
-  #   guess = Guess.new('bob', WordToGuess.new('bob'))
+  #   #guess = Guess.new('bob', WordToGuess.new('bob'))
   #   word_to_guess
-  #   full_word_check(guess)
+  #   #full_word_check(guess)
+  #   exit
+  #   puts "and in the end"
   # end
 
   def player_setup
