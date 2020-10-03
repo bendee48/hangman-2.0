@@ -1,20 +1,22 @@
+# frozen_string_literal: true
+
 require_relative '../lib/game'
 
 RSpec.describe Game do
-  subject(:game) { Game.new }
+  subject(:game) { described_class.new }
 
-  around(:each) do |example|
-    example.run 
-    rescue SystemExit
+  around do |example|
+    example.run
+  rescue SystemExit
   end
 
   # Suppresses puts output, comment out to reveal output again.
-  before(:each) do
+  before do
     allow($stdout).to receive(:write)
   end
 
   describe 'play through' do
-    context 'win' do
+    context 'with victory' do
       it 'by guessing the correct word' do
         word = game.word_to_guess.word
         allow($stdin).to receive(:gets).and_return('no', 'no', 'Beth', word, 'no')
@@ -30,7 +32,7 @@ RSpec.describe Game do
       end
     end
 
-    context 'lose' do
+    context 'with defeat' do
       def wrong_letter
         let = 'a'
         word = game.word_to_guess.word
@@ -59,7 +61,7 @@ RSpec.describe Game do
   end
 
   describe 'invaldation is triggered' do
-    context 'invalid name' do
+    context 'with invalid name' do
       it 're-tries the loop if player name is invalid' do
         allow($stdin).to receive(:gets).and_return('no', 'no', 'be', 'bee', 'quit game')
         expect(Display).to receive(:enter_name).twice
@@ -67,7 +69,7 @@ RSpec.describe Game do
       end
     end
 
-    context 'invalid guess' do
+    context 'with invalid guess' do
       it 're-tries the loop if guess is invalid' do
         allow($stdin).to receive(:gets).and_return('no', 'no', 'Dan', '4', 'quit game')
         expect(Display).to receive(:beginning_of_guess_round).twice
@@ -95,9 +97,9 @@ RSpec.describe Game do
   describe 'reload' do
     it 'starts a new game at game end' do
       word = game.word_to_guess.word
-        allow($stdin).to receive(:gets).and_return('no', 'no', 'Beth', word, 'yes', 'quit game')
-        expect(Game).to receive(:new).and_call_original
-        game.start
+      allow($stdin).to receive(:gets).and_return('no', 'no', 'Beth', word, 'yes', 'quit game')
+      expect(described_class).to receive(:new).and_call_original
+      game.start
     end
   end
 end

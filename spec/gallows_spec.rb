@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/gallows'
 
 RSpec.describe Gallows do
@@ -5,7 +7,7 @@ RSpec.describe Gallows do
 
   describe '#start' do
     it 'returns the starting gallows' do
-    start = <<-START
+      start = <<-START
     ===========
       |/    |
       |
@@ -13,15 +15,15 @@ RSpec.describe Gallows do
       |
       |\\
     ============
-    START
+      START
 
-      expect(gallows::start).to eq start
+      expect(gallows.start).to eq start
     end
   end
 
   describe '#head' do
     it 'returns the gallows with head' do
-    head = <<-HEAD
+      head = <<-HEAD
     ===========
       |/    |
       |     O
@@ -29,15 +31,15 @@ RSpec.describe Gallows do
       |
       |\\
     ============
-    HEAD
+      HEAD
 
-      expect(gallows::head).to eq head
+      expect(gallows.head).to eq head
     end
   end
 
   describe '#body' do
     it 'returns the gallows with body' do
-    body = <<-BODY
+      body = <<-BODY
     ===========
       |/    |
       |     O
@@ -45,15 +47,15 @@ RSpec.describe Gallows do
       |
       |\\
     ============
-    BODY
+      BODY
 
-      expect(gallows::body).to eq body
+      expect(gallows.body).to eq body
     end
   end
 
   describe '#right_arm' do
     it 'returns the gallows with right arm' do
-    right_arm = <<-RIGHT_ARM
+      right_arm = <<-RIGHT_ARM
     ===========
       |/    |
       |     O
@@ -61,15 +63,15 @@ RSpec.describe Gallows do
       |
       |\\
     ============
-    RIGHT_ARM
+      RIGHT_ARM
 
-      expect(gallows::right_arm).to eq right_arm
+      expect(gallows.right_arm).to eq right_arm
     end
   end
 
   describe '#left_arm' do
     it 'returns the gallows with left arm' do
-    left_arm = <<-LEFT_ARM
+      left_arm = <<-LEFT_ARM
     ===========
       |/    |
       |     O
@@ -77,15 +79,15 @@ RSpec.describe Gallows do
       |
       |\\
     ============
-    LEFT_ARM
+      LEFT_ARM
 
-      expect(gallows::left_arm).to eq left_arm
+      expect(gallows.left_arm).to eq left_arm
     end
   end
 
   describe '#right_leg' do
     it 'returns the gallows with right leg' do
-    right_leg = <<-RIGHT_LEG
+      right_leg = <<-RIGHT_LEG
     ===========
       |/    |
       |     O
@@ -93,15 +95,15 @@ RSpec.describe Gallows do
       |    /
       |\\
     ============
-    RIGHT_LEG
+      RIGHT_LEG
 
-      expect(gallows::right_leg).to eq right_leg
+      expect(gallows.right_leg).to eq right_leg
     end
   end
 
   describe '#left_leg' do
     it 'returns the gallows with left leg' do
-    finish = <<-FINISH
+      finish = <<-FINISH
     ===========
       |/    |
       |     O
@@ -109,9 +111,9 @@ RSpec.describe Gallows do
       |    / \\
       |\\
     ============
-    FINISH
+      FINISH
 
-      expect(gallows::finish).to eq finish
+      expect(gallows.finish).to eq finish
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/answer'
 
 RSpec.describe Answer do
@@ -23,17 +25,17 @@ RSpec.describe Answer do
     end
 
     it 'removes added white space' do
-      answer = described_class.new("e    ")
+      answer = described_class.new('e    ')
       expect(answer.answer).to eql 'e'
     end
   end
 
   describe '#quit_game?' do
-    context 'player chooses to quit game' do
+    context 'when player chooses to quit game' do
       it 'is true' do
         answer = described_class.new('hello')
         answer.answer = 'quit game'
-        expect(answer.quit_game?).to eql true
+        expect(answer.quit_game?).to be true
       end
     end
   end
