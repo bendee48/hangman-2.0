@@ -210,7 +210,8 @@ RSpec.describe Display do
 
   describe '.defeat' do
     it 'displays defeat text' do
-      expect { display.defeat }.to output.to_stdout
+      word_to_guess = double('Word to Guess', word: 'hello')
+      expect { display.defeat(word_to_guess) }.to output.to_stdout
     end
   end
 

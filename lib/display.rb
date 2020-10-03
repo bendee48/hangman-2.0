@@ -2,7 +2,7 @@ require_relative 'gallows'
 
 module Display
   def self.welcome_message
-    puts "Welcome."
+    puts "Welcome to Hangman.\n\n"
   end
 
   def self.instruction_intro
@@ -18,10 +18,10 @@ module Display
   A correct guess will result in that letter being filled in.
   Incorrect guesses will result in a part of the stick man being drawn.
   You have 6 incorrect guesses to play with to save your man.
-  You may also guess the whole word at any time, but be careful. An incorrect guess is game over.
+  You may also guess the whole word at any time. But be careful; an incorrect guess is game over.
 
   The game is auto saved after each round. 
-  Use the load function at the start to load a previous game.
+  Use the load function at game start to load a previously saved game.
   Enter 'quit game' at any time to end session.
 
 MSG
@@ -74,9 +74,10 @@ MSG
     puts "\n  You win!\n\n"
   end
 
-  def self.defeat
+  def self.defeat(word_to_guess)
     puts Gallows.finish
-    puts "You lose!"
+    puts "\n Sorry, you lose!"
+    puts "\n The word was #{word_to_guess.word.upcase}\n\n"
   end
 
   def self.load_game

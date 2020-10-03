@@ -30,7 +30,7 @@ class Game
   def main_game_loop
     loop do
       Gallows::GALLOWS[guess_logic.incorrect_guesses]
-      puts word_to_guess.word #TESTING REMOVE
+      #puts word_to_guess.word #TESTING REMOVE
       guess
       victory if win?
       defeat if game_over?
@@ -117,7 +117,7 @@ class Game
   end
 
   def defeat
-    Display.defeat
+    Display.defeat(word_to_guess)
     reload
   end
 
