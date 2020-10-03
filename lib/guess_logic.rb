@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class for processing guesses
 class GuessLogic
   attr_reader :word_to_guess, :guessed_letters
   attr_accessor :incorrect_guesses, :incorrect_letters,

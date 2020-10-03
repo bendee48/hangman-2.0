@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'answer'
 
+# Class to model a player's name given as an answer
 class PlayerName < Answer
   attr_reader :answer
 
@@ -10,7 +13,7 @@ class PlayerName < Answer
 
   def valid?
     self.errors = []
-    errors << "Name must be between 3 - 12 chars." unless valid_size?
+    errors << 'Name must be between 3 - 12 chars.' unless valid_size?
     errors.empty?
   end
 
@@ -18,5 +21,5 @@ class PlayerName < Answer
 
   def valid_size?
     answer.size > 2 && answer.size < 13
-  end   
+  end
 end

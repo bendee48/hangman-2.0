@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Module to hold Gallow graphics
 module Gallows
   def self.start
-  <<-GALLOWS
+    <<-GALLOWS
     ===========
       |/    |
       |
@@ -8,11 +11,11 @@ module Gallows
       |
       |\\
     ============
-  GALLOWS
+    GALLOWS
   end
 
   def self.head
-  <<-GALLOWS
+    <<-GALLOWS
     ===========
       |/    |
       |     O
@@ -20,11 +23,11 @@ module Gallows
       |
       |\\
     ============
-  GALLOWS
+    GALLOWS
   end
 
   def self.body
-  <<-GALLOWS
+    <<-GALLOWS
     ===========
       |/    |
       |     O
@@ -32,11 +35,11 @@ module Gallows
       |
       |\\
     ============
-  GALLOWS
+    GALLOWS
   end
 
   def self.right_arm
-  <<-GALLOWS
+    <<-GALLOWS
     ===========
       |/    |
       |     O
@@ -44,11 +47,11 @@ module Gallows
       |
       |\\
     ============
-  GALLOWS
+    GALLOWS
   end
 
   def self.left_arm
-  <<-GALLOWS
+    <<-GALLOWS
     ===========
       |/    |
       |     O
@@ -56,11 +59,11 @@ module Gallows
       |
       |\\
     ============
-  GALLOWS
+    GALLOWS
   end
 
   def self.right_leg
-  <<-GALLOWS
+    <<-GALLOWS
     ===========
       |/    |
       |     O
@@ -68,11 +71,11 @@ module Gallows
       |    /
       |\\
     ============
-  GALLOWS
+    GALLOWS
   end
 
   def self.finish
-  <<-GALLOWS
+    <<-GALLOWS
     ===========
       |/    |
       |     O
@@ -80,15 +83,15 @@ module Gallows
       |    / \\
       |\\
     ============
-  GALLOWS
+    GALLOWS
   end
 
-  GALLOWS = { 0 => self.start, 
-              1 => self.head,
-              2 => self.body,
-              3 => self.right_arm,
-              4 => self.left_arm,
-              5 => self.right_leg,
-              6 => self.finish,
-  }.freeze  
+  GALLOWS = { 0 => start,
+              1 => head,
+              2 => body,
+              3 => right_arm,
+              4 => left_arm,
+              5 => right_leg,
+              6 => finish }
+            .freeze
 end

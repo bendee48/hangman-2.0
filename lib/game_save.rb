@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'yaml'
 
+# Class to save and load game
 class GameSave
   def self.save(game)
     game_data = YAML.dump(game)
@@ -10,7 +13,7 @@ class GameSave
 
   def self.load
     save_file = './lib/save_games/savegame.txt'
-    game_data = File.open(save_file, 'r') { |f| f.read }
+    game_data = File.open(save_file, 'r', &:read)
     YAML.load(game_data)
   end
 end

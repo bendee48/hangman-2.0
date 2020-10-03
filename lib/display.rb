@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'gallows'
 
+# Module to display all in game text.
 module Display
   def self.welcome_message
     puts "Welcome to Hangman.\n\n"
@@ -7,7 +10,7 @@ module Display
 
   def self.instruction_intro
     puts "If you'd like instructions enter 'i'."
-    puts "Otherwise press any key to continue."
+    puts 'Otherwise press any key to continue.'
   end
 
   def self.instructions
@@ -24,11 +27,11 @@ module Display
   Use the load function at game start to load a previously saved game.
   Enter 'quit game' at any time to end session.
 
-MSG
+    MSG
   end
 
   def self.enter_name
-    puts "Enter your name: "
+    puts 'Enter your name: '
   end
 
   def self.play_again
@@ -36,7 +39,7 @@ MSG
   end
 
   def self.leave
-    puts "Okay, bye."
+    puts 'Okay, bye.'
   end
 
   def self.validation_errors(errors)
@@ -66,7 +69,7 @@ MSG
   end
 
   def self.end_of_guess_round(guess_logic)
-    puts "#{guess_logic.messages.pop}"
+    puts guess_logic.messages.pop.to_s
   end
 
   def self.victory(word_to_guess)
@@ -82,6 +85,6 @@ MSG
 
   def self.load_game
     puts "Enter 'load' to load previously saved game."
-    puts "Or press any key to start a new game."
+    puts 'Or press any key to start a new game.'
   end
 end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class to model user input
 class Answer
   attr_accessor :errors, :answer
 

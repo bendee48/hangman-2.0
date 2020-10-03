@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Class to model Dictionary
 class Dictionary
   attr_reader :filename
-  
+
   def initialize(filename)
     @filename = filename
   end
@@ -13,8 +16,8 @@ class Dictionary
 
   def words
     @words ||= File.open("static/#{filename}") do |f|
-                 f.readlines(chomp: true)
-                  .reject { |word| word.size < 5 || word.size > 12 }
-               end
+      f.readlines(chomp: true)
+       .reject { |word| word.size < 5 || word.size > 12 }
+    end
   end
 end

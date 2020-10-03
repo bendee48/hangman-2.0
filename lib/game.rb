@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'player'
 require_relative 'dictionary'
 require_relative 'word_to_guess'
@@ -10,6 +12,7 @@ require_relative 'game_save'
 require_relative 'answer'
 require 'yaml'
 
+# Class to hold all main game elements and behaviour
 class Game
   attr_accessor :player, :word_to_guess, :guess_logic
 
@@ -30,22 +33,13 @@ class Game
   def main_game_loop
     loop do
       Gallows::GALLOWS[guess_logic.incorrect_guesses]
-      #puts word_to_guess.word #TESTING REMOVE
+      # puts word_to_guess.word TESTING
       guess
       victory if win?
       defeat if game_over?
       GameSave.save(self)
     end
   end
-
-  # def test
-  #   puts 'hallo'
-  #   #guess = Guess.new('bob', WordToGuess.new('bob'))
-  #   word_to_guess
-  #   #full_word_check(guess)
-  #   exit
-  #   puts "and in the end"
-  # end
 
   def player_setup
     loop do
