@@ -12,9 +12,8 @@ RSpec.describe Game do
     context 'win' do
       it 'wins by guessing the correct word' do
         word = game.word_to_guess.word
-        allow($stdin).to receive(:gets).and_return('no', 'no', 'Beth', word)
-        allow(game).to receive(:loop).and_yield
-        expect(game).to receive(:victory)
+        allow($stdin).to receive(:gets).and_return('no', 'no', 'Beth', word, 'no')
+        expect(game).to receive(:victory).and_call_original
         game.start
       end
 
@@ -51,6 +50,49 @@ RSpec.describe Game do
         expect(game).to receive(:defeat).and_call_original
         game.start
       end
+    end
+  end
+
+  describe 'invaldation is triggered' do
+    context 'invalid name' do
+      it 're-tries the loop if player name is invalid' do
+        allow($stdin).to receive(:gets).and_return('no', 'no', 'be', 'bee', 'quit game')
+        expect(Display).to receive(:enter_name).twice
+        game.start
+      end
+    end
+
+    context 'invalid guess' do
+      it 're-tries the loop if guess is invalid' do
+        allow($stdin).to receive(:gets).and_return('no', 'no', 'Dan', '4', 'quit game')
+        expect(Display).to receive(:beginning_of_guess_round).twice
+        game.start
+      end
+    end
+  end
+
+  describe 'load' do
+    it 'loads previously saved game when selected' do
+      allow($stdin).to receive(:gets).and_return('load', 'quit game')
+      expect(GameSave).to receive(:load).and_call_original
+      game.start
+    end
+  end
+
+  describe 'instructions' do
+    it 'instructions are shown when selected' do
+      allow($stdin).to receive(:gets).and_return('no', 'i', 'quit game')
+      expect(Display).to receive(:instructions).and_call_original
+      game.start
+    end
+  end
+
+  describe 'reload' do
+    it 'starts a new game at game end' do
+      word = game.word_to_guess.word
+        allow($stdin).to receive(:gets).and_return('no', 'no', 'Beth', word, 'yes', 'quit game')
+        expect(Game).to receive(:new).and_call_original
+        game.start
     end
   end
 end
