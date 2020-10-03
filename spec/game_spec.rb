@@ -8,6 +8,11 @@ RSpec.describe Game do
     rescue SystemExit
   end
 
+  # Suppresses game's puts output, comment out to reveal text output again.
+  before(:each) do
+    allow($stdout).to receive(:write)
+  end
+
   describe 'play through' do
     context 'win' do
       it 'wins by guessing the correct word' do
@@ -23,14 +28,18 @@ RSpec.describe Game do
         expect(game).to receive(:victory).and_call_original
         game.start
       end
-
-      # it 'test' do
-      #   allow(game).to receive(:exit).and_return('Exited')
-      #   expect { game.test }.to output("hello\nand in the end\n").to_stdout
-      # end
     end
 
     context 'lose' do
+      def wrong_letter
+        let = 'a'
+        word = game.word_to_guess.word
+        while word.include?(let)
+          let = let.next
+        end
+        let
+      end
+
       it 'loses by guessing an incorrect word' do
         word = game.word_to_guess.word.chars.shuffle.join
         word = word.chars.shuffle.join
@@ -40,11 +49,7 @@ RSpec.describe Game do
       end
 
       it 'loses by running out of lives' do
-        let = 'a'
-        word = game.word_to_guess.word
-        while word.include?(let)
-          let = let.next
-        end
+        let = wrong_letter
         letters = (1..6).map { let }
         allow($stdin).to receive(:gets).and_return('no', 'no', 'Beth', *letters, 'no')
         expect(game).to receive(:defeat).and_call_original
