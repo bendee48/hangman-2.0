@@ -2,5 +2,5 @@ spec/examples.txt
 .byebug_history
 lib/save_games/savegame.txt
 coverage
-.bundle
+.bundle/
 .rubocop.yml
