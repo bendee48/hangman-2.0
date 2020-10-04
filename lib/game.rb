@@ -81,7 +81,11 @@ class Game
   def load_game
     Display.load_game
     response = Answer.new($stdin.gets)
-    GameSave.load.main_game_loop if response.answer == 'load'
+    begin
+      GameSave.load.main_game_loop if response.answer == 'load'
+    rescue StandardError
+      puts 'No current save game.'
+    end
   end
 
   def full_word_check(guess)

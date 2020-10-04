@@ -13,7 +13,11 @@ class GameSave
 
   def self.load
     save_file = './lib/save_games/savegame.txt'
-    game_data = File.open(save_file, 'r', &:read)
-    YAML.load(game_data)
+    begin
+      game_data = File.open(save_file, 'r', &:read)
+      YAML.load(game_data)
+    rescue StandardError
+      puts 'No current save file'
+    end
   end
 end
