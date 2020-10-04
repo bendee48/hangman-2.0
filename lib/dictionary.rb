@@ -15,7 +15,7 @@ class Dictionary
   private
 
   def words
-    @words ||= File.open("static/#{filename}") do |f|
+    @words ||= File.open(File.join(File.dirname(__FILE__), "../static/#{filename}")) do |f|
       f.readlines(chomp: true)
        .reject { |word| word.size < 5 || word.size > 12 }
     end
