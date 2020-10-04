@@ -23,7 +23,7 @@ RSpec.describe GameSave do
     it 'loads saved game' do
       file = instance_double(File)
       yaml = class_double(YAML)
-      allow(File).to receive(:open).with('./lib/save_games/savegame.txt', 'r').and_yield(file)
+      allow(File).to receive(:open).with(File.join(File.dirname(__FILE__), '../lib/save_games/savegame.txt'), 'r').and_yield(file)
       allow(file).to receive(:read).and_return(yaml)
       allow(YAML).to receive(:load).and_return(game)
       expect(game_save.load).to eql game
