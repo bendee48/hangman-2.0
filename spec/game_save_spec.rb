@@ -27,6 +27,7 @@ RSpec.describe GameSave do
       file.puts 'game data'
       file.rewind
       allow(File).to receive(:join).and_return('a file')
+      allow(File).to receive(:exist?).and_return(true)
       allow(File).to receive(:open).and_yield(file)
       expect(game_save.load).to eql 'game data'
     end

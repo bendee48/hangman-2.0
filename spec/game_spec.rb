@@ -10,9 +10,11 @@ RSpec.describe Game do
   rescue SystemExit
   end
 
-  # Suppresses puts output, comment out to reveal output again.
   before do
+    # Suppresses puts output, comment out to reveal output again.
     allow($stdout).to receive(:write)
+    # Suppresses auto game save
+    allow(GameSave).to receive(:save).and_return(nil)
   end
 
   describe 'play through' do

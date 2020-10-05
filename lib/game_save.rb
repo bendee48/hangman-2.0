@@ -10,9 +10,7 @@ class GameSave
     save_file = File.join(File.dirname(__FILE__), '../lib/save_games/savegame.txt')
     dirname = File.dirname(save_file)
 
-    unless File.directory?(dirname)
-      FileUtils.mkdir(dirname)
-    end
+    FileUtils.mkdir(dirname) unless File.directory?(dirname)
 
     File.open(save_file, 'w') do |f|
       f.write game_data
@@ -21,11 +19,10 @@ class GameSave
 
   def self.load
     save_file = File.join(File.dirname(__FILE__), '../lib/save_games/savegame.txt')
-    begin
-      game_data = File.open(save_file, 'r', &:read)
-      YAML.load(game_data)
-    rescue StandardError
-      puts 'No current save file'
-    end
+
+    return nil unless File.exist?(save_file)
+
+    game_data = File.open(save_file, 'r', &:read)
+    YAML.load(game_data)
   end
 end
