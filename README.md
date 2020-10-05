@@ -12,7 +12,7 @@ Or add to your Gemfile
 
 `gem 'hangman-cli'`
 
-Usage
+## Usage
 
 To start a new game
 
