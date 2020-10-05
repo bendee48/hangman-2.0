@@ -16,7 +16,9 @@ Or add to your Gemfile
 
 To start a new game
 
-`hangman`
+Just enter `hangman`
+
+`$ hangman`
 
 ### In-game
 
