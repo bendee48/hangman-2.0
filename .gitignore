@@ -1,6 +1,6 @@
 spec/examples.txt
 .byebug_history
-lib/save_games/savegame.txt
+lib/save_games
 coverage
 .bundle/
 .rubocop.yml
