@@ -10,6 +10,7 @@ RSpec.describe GameSave do
 
   describe '.save' do
     it 'saves the a game object' do
+      skip
       file = StringIO.new
       game_data = 'game data'
       allow(YAML).to receive(:dump).with(game).and_return(game_data)
@@ -21,6 +22,7 @@ RSpec.describe GameSave do
 
   describe '.load' do
     it 'loads saved game' do
+      skip
       file = instance_double(File)
       yaml = class_double(YAML)
       allow(File).to receive(:open).with(File.join(File.dirname(__FILE__), '../lib/save_games/savegame.txt'), 'r').and_yield(file)
