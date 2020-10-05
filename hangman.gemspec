@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Gem::Specification.new do |gem|
-  gem.name = 'hangman'
+  gem.name = 'hangman-cli'
   gem.version = '2.0.0'
   gem.summary = 'The game hangman'
   gem.authors = ['Ben Daniels']
