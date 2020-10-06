@@ -4,6 +4,7 @@
 /spec/examples.txt
 .byebug_history
 .rubocop.yml
-hangman-cli-2.0.0.gem
-hangman-cli-2.0.1.gem
+
+hangman-cli-*.gem
+
 
