@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name = 'hangman-cli'
-  gem.version = '2.0.0'
+  gem.version = '2.0.1'
   gem.summary = 'The game hangman'
   gem.authors = ['Ben Daniels']
   gem.email = ['benbanj@hotmail.com']
