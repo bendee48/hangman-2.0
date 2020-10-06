@@ -10,7 +10,7 @@ module Display
 
   def self.instruction_intro
     puts "If you'd like instructions enter 'i'."
-    puts 'Otherwise press any key to continue.'
+    puts 'Otherwise press return to continue.'
   end
 
   def self.instructions
@@ -85,6 +85,6 @@ module Display
 
   def self.load_game
     puts "Enter 'load' to load previously saved game."
-    puts 'Or press any key to start a new game.'
+    puts 'Or press return to start a new game.'
   end
 end

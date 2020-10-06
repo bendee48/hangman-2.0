@@ -1,6 +1,9 @@
-spec/examples.txt
+/.bundle/
+/coverage/
+/lib/save_games/
+/spec/examples.txt
 .byebug_history
-lib/save_games
-coverage
-.bundle/
 .rubocop.yml
+hangman-cli-2.0.0.gem
+hangman-cli-2.0.1.gem
+
